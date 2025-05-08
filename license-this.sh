@@ -61,7 +61,8 @@ function add_short_license {
                     echo "OK, Not adding "
                     exit
                 ;;
-                * ) echo "Please answer either yes or no";;
+                * ) echo "OK, Not adding "
+                    exit
             esac
         done
 
