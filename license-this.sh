@@ -27,14 +27,48 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
 OF THE POSSIBILITY OF SUCH DAMAGE."
 
-SHORT_LICENSE="# License
+SHORT_LICENSE="
+# License
 
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
 
 # ---------------------------------------------------------------------------------
 
-if [ ! -f LICENSE ]; then
-    echo "$FULL_LICENSE" > LICENSE
-else
-    echo "This folder already has a LICENSE file!"
-fi
+function add_license {
+    if [ ! -f LICENSE ]; then
+        echo "$FULL_LICENSE" > LICENSE
+        echo "Added full license to LICENSE file here"
+    else
+        echo "This folder already has a LICENSE file!"
+    fi
+}
+
+function add_short_license {
+    if [ ! -f README.md ]; then
+        echo "$SHORT_LICENSE" >> README.md
+        echo "Added short license to end of README.md here"
+    else
+        echo "This folder already has a README.md!"
+        while true; do
+            read -p "Do you wish to wish to add short license to this README.md? [Yy/Nn] " yesno
+            case $yesno in
+                [Yy]* ) 
+                    echo "Ok, Adding"
+                    echo "$SHORT_LICENSE" >> README.md
+                    exit
+                ;;
+                [Nn]* ) 
+                    echo "OK, Not adding "
+                    exit
+                ;;
+                * ) echo "Please answer either yes or no";;
+            esac
+        done
+
+    fi
+}
+
+# ---------------------------------------------------------------------------------
+
+add_license
+add_short_license
