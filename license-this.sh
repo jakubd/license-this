@@ -34,8 +34,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
 OF THE POSSIBILITY OF SUCH DAMAGE."
 
-SHORT_LICENSE="
-# License
+SHORT_LICENSE="# License
 
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
 
@@ -53,7 +52,7 @@ function add_license {
 function add_short_license {
     if [ ! -f README.md ]; then
         echo "$SHORT_LICENSE" >> README.md
-        echo "Added short license to end of README.md here"
+        echo "Created a short license at end of README.md here"
     else
         echo "This folder already has a README.md!"
         while true; do

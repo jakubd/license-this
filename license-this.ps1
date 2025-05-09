@@ -35,6 +35,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 "@
 
 $SHORT_LICENSE = @"
+
 # License
 
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
@@ -50,8 +51,18 @@ if (Test-Path LICENSE) {
 }
 
 if (Test-Path README.md) {
-     Write-Output "README.md file already exists in this directory!"
+    Write-Output "README.md file already exists in this directory!"
+
+    $response = Read-Host "Do you want to add license info to end of README? (Yy/Nn)"
+    if ($response -eq 'Y' -or $response -eq 'y') {
+        Add-Content -Path README.md -Value $SHORT_LICENSE
+        Write-Output "OK Added."
+    } else {
+        Write-Output "OK Skipping."
+    }
+
 } else {
-    Write-Output "README.md file does not exist in this directory!"
+    Set-Content -Path README.md -Value $SHORT_LICENSE
+    Write-Output "Added short license to new README.md file"
 }
 

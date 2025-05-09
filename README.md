@@ -1,6 +1,6 @@
 # License This!
 
-Simple cross platform shell application that can add license information to the current directory with a:
+Simple cross platform shell script that can add license information to the current directory with a:
 
 Mac/Linux:
 ```
@@ -13,6 +13,10 @@ Windows:
 ```
 license-this.ps1
 ```
+
+Creates a `LICENSE` file in the current directory, if one does not exist. Will also
+create a `README.md` with short license information if one does not exist.  If one does
+it will prompt you to add short license info at end of file.
 
 ## Usage
 
