@@ -1,6 +1,6 @@
 # License This!
 
-Cross platform shell application that can add license information to the current directory with a simple:
+Simple cross platform shell application that can add license information to the current directory with a:
 
 Mac/Linux:
 ```
@@ -14,19 +14,9 @@ Windows:
 license-this.bat
 ```
 
-## Instructions
+## Usage
 
-To set your license information simply run the configuration wizard:
-
-Mac/Linux:
-```
-./configure.sh
-```
-
-or Windows:
-```
-configure.bat
-```
+Set your license information by editing the script variables at the top.
 
 # License
 
