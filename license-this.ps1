@@ -1,13 +1,12 @@
-#!/bin/bash
-
 # ---------------------------------------------------------------------------------
 #  EDIT THE VARIABLES HERE TO EDIT LICENSE INFORMATION. DEFAULT is BSD-3-CLAUSE
 # ---------------------------------------------------------------------------------
 
-NAME="Jakub Dalek"
-YEAR=$(date +%Y)
+$NAME = "Jakub Dalek" 
+$YEAR = (Get-Date).Year
 
-FULL_LICENSE="Copyright $YEAR $NAME
+$FULL_LICENSE = @"
+Copyright $YEAR $NAME
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -32,51 +31,27 @@ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
 DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
-OF THE POSSIBILITY OF SUCH DAMAGE."
+OF THE POSSIBILITY OF SUCH DAMAGE.
+"@
 
-SHORT_LICENSE="
+$SHORT_LICENSE = @"
 # License
 
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
+"@
 
 # ---------------------------------------------------------------------------------
 
-function add_license {
-    if [ ! -f LICENSE ]; then
-        echo "$FULL_LICENSE" > LICENSE
-        echo "Added full license to LICENSE file here"
-    else
-        echo "This folder already has a LICENSE file!"
-    fi
+if (Test-Path LICENSE) {
+    Write-Output "LICENSE file already exists in this directory! Skipping"
+} else {
+    Write-Output "LICENSE file does not exist in this directory, adding"
+    Set-Content -Path LICENSE -Value $FULL_LICENSE
 }
 
-function add_short_license {
-    if [ ! -f README.md ]; then
-        echo "$SHORT_LICENSE" >> README.md
-        echo "Added short license to end of README.md here"
-    else
-        echo "This folder already has a README.md!"
-        while true; do
-            read -p "Do you wish to wish to add short license to this README.md? [Yy/Nn] " yesno
-            case $yesno in
-                [Yy]* ) 
-                    echo "Ok, Adding"
-                    echo "$SHORT_LICENSE" >> README.md
-                    exit
-                ;;
-                [Nn]* ) 
-                    echo "OK, Not adding "
-                    exit
-                ;;
-                * ) echo "OK, Not adding "
-                    exit
-            esac
-        done
-
-    fi
+if (Test-Path README.md) {
+     Write-Output "README.md file already exists in this directory!"
+} else {
+    Write-Output "README.md file does not exist in this directory!"
 }
 
-# ---------------------------------------------------------------------------------
-
-add_license
-add_short_license

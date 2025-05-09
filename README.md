@@ -11,7 +11,7 @@ or
 
 Windows:
 ```
-license-this.bat
+license-this.ps1
 ```
 
 ## Usage
