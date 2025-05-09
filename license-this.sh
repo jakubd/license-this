@@ -1,6 +1,12 @@
 #!/bin/bash
 
-FULL_LICENSE="Copyright 2025 Jakub Dalek
+# ---------------------------------------------------------------------------------
+#  EDIT THE VARIABLES HERE TO EDIT LICENSE INFORMATION. DEFAULT is BSD-3-CLAUSE
+# ---------------------------------------------------------------------------------
+
+NAME="Jakub Dalek"
+
+FULL_LICENSE="Copyright $(date +%Y) $NAME
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
