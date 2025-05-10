@@ -46,31 +46,44 @@ function add_license {
         echo "Added full license to LICENSE file here"
     else
         echo "This folder already has a LICENSE file!"
+        read -p "Replace current LICENSE file? [y/n] " replaceyesno
+        case $replaceyesno in
+            [Yy]*) 
+                echo "ok replacing"
+                echo "$FULL_LICENSE" > LICENSE
+            ;;
+            *) echo "OK, not replacing"
+        esac
     fi
 }
 
 function add_short_license {
     if [ ! -f README.md ]; then
-        echo "$SHORT_LICENSE" >> README.md
-        echo "Created a short license at end of README.md here"
+        
+        read -p "Added short license to end of README.md? [y/n] " appendyesno
+        case $appendyesno in
+            [Yy]*)
+                echo "OK appending short license"
+                echo "$SHORT_LICENSE" >> README.md
+            ;;
+            *)  
+                echo "Ok not appending"
+        esac
+ 
     else
         echo "This folder already has a README.md!"
-        while true; do
-            read -p "Do you wish to wish to add short license to this README.md? [Yy/Nn] " yesno
-            case $yesno in
-                [Yy]* ) 
-                    echo "Ok, Adding"
-                    echo "$SHORT_LICENSE" >> README.md
-                    exit
-                ;;
-                [Nn]* ) 
-                    echo "OK, Not adding "
-                    exit
-                ;;
-                * ) echo "OK, Not adding "
-                    exit
-            esac
-        done
+
+        read -p "Do you wish to wish to add short license to this README.md? [y/n] " addyesno
+        case $addyesno in
+            [Yy]* ) 
+                echo "Ok, Adding"
+                echo "$SHORT_LICENSE" >> README.md
+                exit
+            ;;
+            * ) echo "OK, Not adding "
+                exit
+        esac
+
 
     fi
 }
