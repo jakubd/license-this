@@ -60,8 +60,8 @@ function add_license {
 function add_short_license {
     if [ ! -f README.md ]; then
         
-        read -p "Added short license to end of README.md? [y/n] " appendyesno
-        case $appendyesno in
+        read -p "Add a README.md with short license? [y/n] " addyesno
+        case $addyesno in
             [Yy]*)
                 echo "OK appending short license"
                 echo "$SHORT_LICENSE" >> README.md
@@ -73,8 +73,8 @@ function add_short_license {
     else
         echo "This folder already has a README.md!"
 
-        read -p "Do you wish to wish to add short license to this README.md? [y/n] " addyesno
-        case $addyesno in
+        read -p "Do you wish to wish to add short license to this README.md? [y/n] " appendyesno
+        case $appendyesno in
             [Yy]* ) 
                 echo "Ok, Adding"
                 echo "$SHORT_LICENSE" >> README.md
@@ -83,8 +83,6 @@ function add_short_license {
             * ) echo "OK, Not adding "
                 exit
         esac
-
-
     fi
 }
 

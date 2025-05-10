@@ -45,6 +45,12 @@ $SHORT_LICENSE = @"
 
 if (Test-Path LICENSE) {
     Write-Output "LICENSE file already exists in this directory! Skipping"
+    $askoverwrite = Read-Host "Do you want to replace LICENSE file? [y/n] "
+    if ($askoverwrite -eq 'Y' -or $askoverwrite -eq 'y') {
+        Set-Content -Path LICENSE -Value $FULL_LICENSE
+    } else {
+        Write-Output "Ok skipping."
+    }
 } else {
     Write-Output "LICENSE file does not exist in this directory, adding"
     Set-Content -Path LICENSE -Value $FULL_LICENSE
@@ -53,7 +59,7 @@ if (Test-Path LICENSE) {
 if (Test-Path README.md) {
     Write-Output "README.md file already exists in this directory!"
 
-    $response = Read-Host "Do you want to add license info to end of README? (Yy/Nn)"
+    $response = Read-Host "Do you want to add license info to end of README? (y/n) "
     if ($response -eq 'Y' -or $response -eq 'y') {
         Add-Content -Path README.md -Value $SHORT_LICENSE
         Write-Output "OK Added."
@@ -62,7 +68,12 @@ if (Test-Path README.md) {
     }
 
 } else {
-    Set-Content -Path README.md -Value $SHORT_LICENSE
-    Write-Output "Added short license to new README.md file"
+    $asknewreadme = Read-Host "Do you want to add a README.md file with short license info? [y/n] "
+    if ($asknewreadme -eq 'Y' -or $asknewreadme -eq 'y') {
+        Set-Content -Path README.md -Value $SHORT_LICENSE
+        Write-Output "Added short license to new README.md file"
+    } else {
+        Write-Output "Ok skipping"
+    }
 }
 
